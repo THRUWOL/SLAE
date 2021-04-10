@@ -205,7 +205,7 @@ namespace SLAE
             // Метод Тихонова (бонус)
             else if (CBTikhonov.IsChecked == true)
             {
-
+                //  когда-нибудь сделаю
             }
             else
             {
