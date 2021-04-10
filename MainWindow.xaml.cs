@@ -126,25 +126,6 @@ namespace SLAE
             a33.Text = Convert.ToString(rnd.Next(-100, 100));
             b3.Text = Convert.ToString(rnd.Next(-100, 100));
         }
-        //
-        private void ReturnSeidel(double[] current)
-        {
-            b1.Text = Convert.ToString(Math.Round(current[0], 5));
-            b2.Text = Convert.ToString(Math.Round(current[1], 5));
-            b3.Text = Convert.ToString(Math.Round(current[2], 5));
-        }
-        private void ReturnSeidel2(double[,] matrx)
-        {
-            a11.Text = Convert.ToString(Math.Round(matrx[0, 0], 5));
-            a12.Text = Convert.ToString(Math.Round(matrx[0, 1], 5));
-            a13.Text = Convert.ToString(Math.Round(matrx[0, 2], 5));
-            a21.Text = Convert.ToString(Math.Round(matrx[1, 0], 5));
-            a22.Text = Convert.ToString(Math.Round(matrx[1, 1], 5));
-            a23.Text = Convert.ToString(Math.Round(matrx[1, 2], 5));
-            a31.Text = Convert.ToString(Math.Round(matrx[2, 0], 5));
-            a32.Text = Convert.ToString(Math.Round(matrx[2, 1], 5));
-            a33.Text = Convert.ToString(Math.Round(matrx[2, 2], 5));
-        }
         /* ЗОНА ПОВЫШЕННОГО БЫДЛОКОДА ЗАКОНЧЕНА */
 
         static double[,] EOR1(double[,] A, int renglon, double factor)
@@ -196,94 +177,7 @@ namespace SLAE
             // Метод Зейделя (2 задание)
             else if (CBSeidel.IsChecked == true)
             {
-                int numVar = 3;
-                double[,] matrix = CreateMatrix(numVar);
-                double[] addtional = CreateAdditional(numVar);
-                double accuracy = 0.01;
-
-                // общий вид:
-                // [x1]   [ b1/a11 ]   / 0 x x \ 
-                // [x2] = [ b2/a22 ] - | x 0 x |
-                // [x3]   [ b3/a33 ]   \ x x 0 /
-                // где x - делится на диагональый элемент первоначальной матрицы.
-                // где b - эелементы из свободных членов
-                // где а - элементы из матрицы
-
-                // матрица коеффициентов + столбец свободных членов.
-                double[,] a = new double[matrix.GetLength(0), matrix.GetLength(1) + 1];
-                for (int i = 0; i < a.GetLength(0); i++)
-                    for (int j = 0; j < a.GetLength(1) - 1; j++)
-                        a[i, j] = matrix[i, j];
-
-                for (int i = 0; i < a.GetLength(0); i++)
-                    a[i, a.GetLength(1) - 1] = addtional[i];
-                //---------------
-                // Метод Зейделя.
-                //---------------
-
-                // Введем вектор значений неизвестных на предыдущей итерации,
-                // размер которого равен числу строк в матрице, т.е. size,
-                // причем согласно методу изначально заполняем его нулями
-                double[] previousValues = new double[matrix.GetLength(0)];
-                for (int i = 0; i < previousValues.GetLength(0); i++)
-                {
-                    previousValues[i] = 0.0;
-                }
-                // Будем выполнять итерационный процесс до тех пор,
-                // пока не будет достигнута необходимая точность
-                while (true)
-                {
-                    // Введем вектор значений неизвестных на текущем шаге
-                    double[] currentValues = new double[a.GetLength(0)];
-
-                    // Посчитаем значения неизвестных на текущей итерации
-                    // в соответствии с теоретическими формулами
-                    for (int i = 0; i < matrix.GetLength(0); i++)
-                    {
-                        // Инициализируем i-ую неизвестную значением
-                        // свободного члена i-ой строки матрицы
-                        currentValues[i] = a[i, a.GetLength(0)];
-
-                        // Вычитаем сумму по всем отличным от i-ой неизвестным
-                        for (int j = 0; j < a.GetLength(0); j++)
-                        {
-                            // При j < i можем использовать уже посчитанные
-                            // на этой итерации значения неизвестных
-                            if (j < i)
-                            {
-                                currentValues[i] -= a[i, j] * currentValues[j];
-                            }
-
-                            // При j > i используем значения с прошлой итерации
-                            if (j > i)
-                            {
-                                currentValues[i] -= a[i, j] * previousValues[j];
-                            }
-                        }
-
-                        // Делим на коэффициент при i-ой неизвестной
-                        currentValues[i] /= a[i, i];
-                    }
-
-                    // Посчитаем текущую погрешность относительно предыдущей итерации
-                    double differency = 0.0;
-
-                    for (int i = 0; i < a.GetLength(0); i++)
-                        differency += Math.Abs(currentValues[i] - previousValues[i]);
-
-                    // Если необходимая точность достигнута, то завершаем процесс
-                    if (differency < accuracy)
-                        break;
-
-                    // Переходим к следующей итерации, так
-                    // что текущие значения неизвестных
-                    // становятся значениями на предыдущей итерации
-                    ;
-                    previousValues = currentValues;
-                    
-                }
-                ReturnSeidel(previousValues);
-                ReturnSeidel2(matrix);
+                
             }
             // Метод Тихонова (бонус)
             else if (CBTikhonov.IsChecked == true)
