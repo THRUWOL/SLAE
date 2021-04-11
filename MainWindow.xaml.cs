@@ -197,7 +197,7 @@ namespace SLAE
                 int numVar = 3;
                 double[,] matrix = CreateMatrix(numVar);
                 double[] addit = CreateAdditional(numVar);
-                GaussSeidel gaussSeidel = new GaussSeidel(matrix, addit, 0.001, false);
+                GaussSeidel gaussSeidel = new GaussSeidel(matrix, addit, 0.001,false);
                 double[] answer = gaussSeidel.Answer;
                 AddAdditional(answer);
 
@@ -262,6 +262,7 @@ namespace SLAE
         public long Iterations { get; private set; }
         public double[] Answer { get; private set; }
 
+        //Проверка сходимости
         private static bool IsConverge(
             IReadOnlyList<double> curr,
             IReadOnlyList<double> prev, int n, double eps)
@@ -273,7 +274,7 @@ namespace SLAE
             }
             return !(Math.Sqrt(norm) >= eps);
         }
-
+        //Решаем
         private void TrySolve(double[,] leftPart, IReadOnlyList<double> rightPart)
         {
             var curr = new double[rightPart.Count];
