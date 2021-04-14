@@ -41,7 +41,8 @@ FontSize="15" FontFamily="Calibri" Background="{x:Null}" BorderBrush="#FFFFE500"
         <CheckBox x:Name="CBSeidel" Content="Метод Зейделя" HorizontalAlignment="Left" Margin="-318,102,0,0" VerticalAlignment="Top" Height="18" Width="156" Checked="Seidel_Checked" Unchecked="Seidel_Unchecked"/>
         <CheckBox x:Name="CBTikhonov" Content="Метод регуляризации Тихонова" HorizontalAlignment="Left" Margin="-318,139,0,0" VerticalAlignment="Top" Height="18" Width="201" Checked="Tikhonov_Checked" Unchecked="Tikhonov_Unchecked" Visibility="Hidden"/>
         <Button x:Name="BStart" Content="Старт" HorizontalAlignment="Left" Margin="-275,218,0,0" VerticalAlignment="Top" Width="194" Height="43" Background="#FFD1FFC8" BorderBrush="#FF00FF0C" FontSize="20" FontWeight="Bold" Foreground="Black" Click="BStart_Click"/>
-        <Button x:Name="BAuto" Content="13 вариант" HorizontalAlignment="Left" Margin="-318,175,0,0" VerticalAlignment="Top" Width="75" Background="#FFFFF9C8" BorderBrush="#FFFFE500" Click="BAuto_Click"/>
-        <Button x:Name="BRandom" Content="Рандом" HorizontalAlignment="Left" Margin="-230,175,0,0" VerticalAlignment="Top" Width="75" Background="#FFFFF9C8" BorderBrush="#FFFFE500" Click="BRandom_Click"/>
+        <Button x:Name="BAuto" Content="13 вариант" HorizontalAlignment="Left" Margin="-316,175,0,0" VerticalAlignment="Top" Width="75" Background="#FFFFF9C8" BorderBrush="#FFFFE500" Click="BAuto_Click"/>
+        <Button x:Name="BRandom" Content="Рандом" HorizontalAlignment="Left" Margin="-228,175,0,0" VerticalAlignment="Top" Width="75" Background="#FFFFF9C8" BorderBrush="#FFFFE500" Click="BRandom_Click"/>
+        <Label x:Name="LDiagonal" Content="" HorizontalAlignment="Left" Margin="-318,125,0,0" VerticalAlignment="Top" Width="237"/>
     </Grid>
 </Window>
